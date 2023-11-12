@@ -1,0 +1,15 @@
+export const fonts = [
+  'Times New Roman',
+  'Georgia',
+  'Garamond',
+  'Baskerville',
+  'Palatino',
+  'Century Schoolbook',
+  'Arial',
+  'Helvetica',
+  'Calibri',
+  'Verdana',
+  'Trebuchet MS',
+  'Futura',
+  'Open Sans',
+]
