@@ -1,0 +1,5 @@
+<ol class="list-group">
+  <app-person-list-element *ngFor="let personne of personnes"
+               [personne]="personne" (click)="selectedPersonne.emit(personne)">
+  </app-person-list-element>
+</ol>

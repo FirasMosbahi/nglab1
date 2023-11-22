@@ -1,0 +1,51 @@
+.status {
+  display: flex;
+  flex-direction: row;
+}
+.data {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5rem;
+}
+.status-group {
+  margin-left: 5rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.header {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+.header-text {
+  padding-left: 7rem;
+}
+.header-seperator {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.status-group {
+  display: flex;
+  flex-direction: row;
+  margin-left: 3rem;
+}
+.status-data {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 30%;
+}
+.status-data > p {
+  text-align: center;
+}
+.status-data-number {
+  font-size: 2rem;
+}
+.footer {
+  margin-bottom: 0.5rem;
+}
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -0.5rem;
+}

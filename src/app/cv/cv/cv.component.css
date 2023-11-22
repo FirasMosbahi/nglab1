@@ -1,0 +1,6 @@
+@import 'node_modules/ngx-toastr/toastr.css';
+
+.cv {
+  margin-left: 10%;
+  margin-top: 2%;
+}

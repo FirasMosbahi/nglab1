@@ -1,0 +1,19 @@
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.main {
+  margin-top: 3rem;
+}
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.infos {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

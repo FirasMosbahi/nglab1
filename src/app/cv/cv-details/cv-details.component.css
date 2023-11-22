@@ -1,0 +1,9 @@
+.card {
+  width: 36rem;
+  perspective: 1000px;
+  transition: transform 0.5s;
+}
+
+.card.rotated {
+  transform: rotateY(360deg);
+}

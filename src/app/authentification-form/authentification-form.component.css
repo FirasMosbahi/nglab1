@@ -1,0 +1,8 @@
+@import "bootstrap/dist/css/bootstrap.css";
+
+form {
+  max-width: 66%;
+  max-height: 66%;
+  margin-top: 5rem;
+  margin-left: 12rem;
+}

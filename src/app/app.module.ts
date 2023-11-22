@@ -21,6 +21,9 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthentificationFormComponent } from './authentification-form/authentification-form.component';
 import { CookieModule, CookieService } from 'ngx-cookie';
+import { CvCardFrontComponent } from './cv/cv-card-front/cv-card-front.component';
+import { CvCardBackComponent } from './cv/cv-card-back/cv-card-back.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,8 +42,11 @@ import { CookieModule, CookieService } from 'ngx-cookie';
     HomeComponent,
     NavbarComponent,
     AuthentificationFormComponent,
+    CvCardFrontComponent,
+    CvCardBackComponent,
   ],
   imports: [
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,

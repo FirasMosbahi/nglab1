@@ -1,0 +1,17 @@
+<div class="container">
+  <div [style]="style.getStyle()" class="m-5">text</div>
+  <div class="row">
+    <div class="col-md-4">
+      <input [(ngModel)]="style.color" type="color" class="form-control" placeholder="color" />
+    </div>
+    <div class="col-md-4">
+      <input type="number" [(ngModel)]="style.fontSize" class="form-control" placeholder="size" />
+    </div>
+    <div class="col-md-4">
+      <select class="form-select" [(ngModel)]="style.fontFamily" aria-label="Default select example">
+        <option selected [value]="fonts[0]">{{fonts[0]}}</option>
+        <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
+      </select>
+    </div>
+  </div>
+</div>

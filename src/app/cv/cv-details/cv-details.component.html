@@ -1,0 +1,9 @@
+<div class="card" [class.rotated]="isFlipped" (click)="toggleCard()" >
+  <div *ngIf="!isFlipped" class="card-front">
+    <app-cv-card-front [personne]="personne" />
+  </div>
+  <div *ngIf="isFlipped" class="card-back">
+    <app-cv-card-back [personne]="personne"/>
+  </div>
+</div>
+

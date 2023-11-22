@@ -1,0 +1,9 @@
+<div *ngIf="embauchedPersonne.length !== 0" class="col-md-6 col-sm-9">
+  <span class="border-primary"
+    *ngFor="let personne of embauchedPersonne">
+        <img src="assets/images/{{personne.path|defaultImage}}"
+             width="150px" height="150px"
+             alt="{{personne.firstname}}" />
+    <p>{{personne.firstname|titlecase}} {{personne.name|titlecase}}</p>
+  </span>
+</div>

@@ -1,0 +1,24 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="authForm">
+  <select id="errorSelect" class="block w-full mt-1 p-2 border rounded" >
+    <option *ngFor="let errorMessage of formErrors" [value]="errorMessage">
+      {{ errorMessage }}
+    </option>
+  </select>
+  <input
+    type="text"
+    id="email"
+    class="form-control"
+    formControlName="email"
+    [ngClass]="getInputClass(email)"
+  />
+  <br/>
+  <input
+    type="password"
+    id="password"
+    class="form-control"
+    formControlName="password"
+    [ngClass]="getInputClass(password)"
+  />
+  <br/>
+  <button class="btn btn-primary" type="submit" [disabled]="authForm?.invalid ?? false" >Envoyer</button>
+</form>
