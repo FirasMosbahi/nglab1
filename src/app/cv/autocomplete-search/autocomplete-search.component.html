@@ -1,0 +1,8 @@
+<div class="bg-white">
+  <input [formControl]="name" type="text" class="form-control" />
+  <app-person-list
+    [showFilters]="false"
+    (selectedPersonne)="redirectToDetails($event)"
+    [personnes]="personnes$ | async"
+  />
+</div>

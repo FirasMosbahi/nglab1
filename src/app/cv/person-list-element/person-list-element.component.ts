@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Personne } from '../model/personne';
-import { CvService } from '../../services/cv.service';
 
 @Component({
   selector: 'app-person-list-element',

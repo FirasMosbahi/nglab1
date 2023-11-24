@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ROUTES } from '../router';
@@ -10,7 +10,7 @@ import { ROUTES } from '../router';
   templateUrl: './authentification-form.component.html',
   styleUrls: ['./authentification-form.component.css'],
 })
-export class AuthentificationFormComponent {
+export class AuthentificationFormComponent implements OnInit {
   authForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -23,8 +23,13 @@ export class AuthentificationFormComponent {
       if (status === 'INVALID') {
         const err: any[] = [];
         Object.keys(this.authForm.controls).forEach((key) => {
-          for (let error in this.authForm.get(key)?.errors) {
-            err.push(`${key} ${error}`);
+          if (this.authForm.get(key)?.dirty) {
+            for (let error in this.authForm.get(key)?.errors) {
+              const errorString = this.authForm.get(key)?.getError(error);
+              console.log(error);
+              console.log(errorString);
+              err.push(`${key} ${error} ${JSON.stringify(errorString)}`);
+            }
           }
         });
         return err;

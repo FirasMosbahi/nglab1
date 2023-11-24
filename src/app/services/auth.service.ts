@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CookieService } from 'ngx-cookie';
-import axios from 'axios';
-import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

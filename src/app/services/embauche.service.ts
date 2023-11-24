@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 import { Personne } from '../cv/model/personne';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmbaucheService {
-  constructor(private readonly toasterService: ToastrService) {}
+  constructor() {}
 
   embauchedCvs: Personne[] = [];
 

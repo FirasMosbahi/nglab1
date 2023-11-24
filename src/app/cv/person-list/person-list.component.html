@@ -1,5 +1,12 @@
+<div *ngIf="showFilters" class="btn-group">
+  <a  (click)="selectFilter(AgeEnum.JUNIOR)" [className]="getButtonClass(AgeEnum.JUNIOR)"  aria-current="page">Junior</a>
+  <a (click)="selectFilter(AgeEnum.SENIOR)" [className]="getButtonClass(AgeEnum.SENIOR)">Senior</a>
+</div>
 <ol class="list-group">
-  <app-person-list-element *ngFor="let personne of personnes"
-               [personne]="personne" (click)="selectedPersonne.emit(personne)">
+  <app-person-list-element
+    *ngFor="let personne of personnes"
+    [personne]="personne"
+    (click)="selectedPersonne.emit(personne)"
+  >
   </app-person-list-element>
 </ol>

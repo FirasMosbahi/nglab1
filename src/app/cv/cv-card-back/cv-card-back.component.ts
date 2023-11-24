@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { Personne } from '../model/personne';
-import { ROUTES } from '../../router';
-import { ToastrService } from 'ngx-toastr';
-import { EmbaucheService } from '../../services/embauche.service';
-import { Router } from '@angular/router';
+import {Component, Input} from '@angular/core';
+import {Personne} from '../model/personne';
+import {ROUTES} from '../../router';
+import {EmbaucheService} from '../../services/embauche.service';
+import {Router} from '@angular/router';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-cv-card-back',
@@ -23,7 +23,7 @@ export class CvCardBackComponent {
       try {
         this.embauchService.embauche(this.personne);
       } catch (e: any) {
-        this.toasterService.error(e.message);
+        this.toasterService.error(e.message)
       }
     }
   }

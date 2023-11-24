@@ -20,5 +20,5 @@
     [ngClass]="getInputClass(password)"
   />
   <br/>
-  <button class="btn btn-primary" type="submit" [disabled]="authForm?.invalid ?? false" >Envoyer</button>
+  <button class="btn btn-primary" type="submit" [disabled]="authForm.invalid" >Envoyer</button>
 </form>

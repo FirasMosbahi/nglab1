@@ -16,14 +16,18 @@ import { SkillsPipe } from './pipes/skills.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { PersonDetailsComponent } from './cv/person-details/person-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ROUTING } from './router';
+import { APP_ROUTES } from './router';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthentificationFormComponent } from './authentification-form/authentification-form.component';
-import { CookieModule, CookieService } from 'ngx-cookie';
 import { CvCardFrontComponent } from './cv/cv-card-front/cv-card-front.component';
 import { CvCardBackComponent } from './cv/cv-card-back/cv-card-back.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { AutocompleteSearchComponent } from './cv/autocomplete-search/autocomplete-search.component';
+import { RxjsOpsComponent } from './rxjs-ops/rxjs-ops.component';
+import { ProductsComponent } from './porducts/products.component';
+import { CvMasterDetailsComponent } from './cv/cv-master-details/cv-master-details.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,10 @@ import { HttpClientModule } from '@angular/common/http';
     AuthentificationFormComponent,
     CvCardFrontComponent,
     CvCardBackComponent,
+    AutocompleteSearchComponent,
+    RxjsOpsComponent,
+    ProductsComponent,
+    CvMasterDetailsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -52,7 +60,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ROUTING,
+    RouterModule.forRoot(APP_ROUTES),
   ],
   providers: [],
   bootstrap: [AppComponent],
