@@ -15,6 +15,9 @@
         <a class="nav-link" [routerLink]="[routes.cv]" routerLinkActive="active" >CV Handler</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" [routerLink]="[routes.addCv]" routerLinkActive="active" >Add CV</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" [routerLink]="[routes.list]" routerLinkActive="active" >List</a>
       </li>
       <li class="nav-item">
@@ -23,10 +26,10 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="[routes.products]" routerLinkActive="active" >Products</a>
       </li>
-      <li class="nav-item" *ngIf="!userId">
-        <a class="nav-link" [routerLink]="[routes.authForm]" routerLinkActive="active" >Login</a>
+      <li class="nav-item" *ngIf="!(id$ | async)">
+        <a class="nav-link" [routerLink]="[routes.login]" routerLinkActive="active" >Login</a>
       </li>
-      <li class="nav-item" *ngIf="userId" (click)="logout()">
+      <li class="nav-item" *ngIf="id$ | async" (click)="logout()">
         <a class="nav-link" href="#" >Logout</a>
       </li>
     </ul>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { values } from 'lodash';
+import { ROUTES } from '../router';
 
 @Injectable({
   providedIn: 'root',
@@ -8,21 +10,33 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
   constructor(private readonly httpClient: HttpClient) {}
 
-  authData: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(
-    localStorage.getItem('id'),
+  authData: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    !!localStorage.getItem('id'),
   );
   authentificate(credentials: { email: string; password: string }) {
-    this.httpClient.post(
-      'https://apilb.tridevs.net/api/Users/login',
-      credentials,
-    );
+    return this.httpClient
+      .post<{ id: string; userId: number }>(
+        'https://apilb.tridevs.net/api/Users/login',
+        credentials,
+      )
+      .pipe(
+        map((value) => {
+          this.modifyLocalStorage(value.id, value.userId, credentials.email);
+          return true;
+        }),
+        catchError((err) => {
+          return of(false);
+        }),
+      );
   }
-  addIdToLocalStorage(id: string) {
+  modifyLocalStorage(id: string, userId: number, email: string) {
     localStorage.setItem('id', id);
-    this.authData.next(id);
+    localStorage.setItem('userId', userId.toString());
+    localStorage.setItem('email', email);
+    this.authData.next(true);
   }
   logout(): void {
     localStorage.clear();
-    this.authData.next(null);
+    this.authData.next(false);
   }
 }

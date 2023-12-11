@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Personne } from '../model/personne';
+import { Personne } from '../../model/personne';
 
 @Component({
   selector: 'app-cv-embauch',

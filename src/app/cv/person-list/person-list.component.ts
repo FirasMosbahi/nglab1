@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Personne } from '../model/personne';
+import { Personne } from '../../model/personne';
 import { AgeEnum } from '../enums/age';
 
 @Component({

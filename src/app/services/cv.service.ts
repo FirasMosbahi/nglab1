@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Personne } from '../cv/model/personne';
-import { catchError, map, Observable, of } from 'rxjs';
+import { Personne } from '../model/personne';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  of,
+  Subject,
+} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { personnesMock } from './personne.mock';
 
@@ -10,6 +17,7 @@ import { personnesMock } from './personne.mock';
 export class CvService {
   private readonly API_URL = 'https://apilb.tridevs.net/api/personnes/';
   personnes: Personne[] = [];
+  personnes$: Subject<Personne[]> = new Subject<Personne[]>();
   getPersonnes$(): Observable<Personne[]> {
     return this.httpClient
       .get<Personne[]>('https://apilb.tridevs.net/api/personnes')
@@ -25,7 +33,6 @@ export class CvService {
       );
   }
   getPersonneById(id: number): Observable<Personne | null> {
-    console.log(this.personnes);
     const searchedPersonne = this.personnes.find(
       (personne) => personne.id == id,
     );
@@ -46,6 +53,17 @@ export class CvService {
     } else {
       return of([]);
     }
+  }
+  addPersonne(personne: Personne) {
+    personne.id = this.personnes.length + 1;
+    // this.personnes.push(personne);
+    console.log('personne', personne);
+    this.personnes.push(personne);
+    this.personnes$.next(this.personnes);
+  }
+  deletePersonne(item: Personne) {
+    this.personnes = this.personnes.filter((personne) => personne !== item);
+    this.personnes$.next(this.personnes);
   }
 
   constructor(private readonly httpClient: HttpClient) {}

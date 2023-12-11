@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Personne } from '../model/personne';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Personne } from '../../model/personne';
 import { ROUTES } from '../../router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CvService } from '../../services/cv.service';
-import { personnesMock } from '../../services/personne.mock';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,28 +17,21 @@ export class PersonDetailsComponent implements OnInit {
     private readonly cvService: CvService,
     private readonly router: Router,
   ) {}
+
   ngOnInit() {
-    this.activatedRoute.data.subscribe((data) => {
-      if (data['personne'] == null) {
-        this.router.navigate(['notfound']);
-      }
-      this.personne = data['personne'];
-    });
+    this.personne = this.activatedRoute.snapshot.data['personne'];
+    // this.activatedRoute.data.subscribe((data) => {
+    //   if (data['personne'] == null) {
+    //     this.router.navigate(['notfound']);
+    //   }
+    //   this.personne = data['personne'];
+    // });
   }
   async backToCvsPage() {
     await this.router.navigate([ROUTES.cv]);
   }
   async deleteCV() {
-    this.cvService.deleteCv$(this.personne?.id ?? -1).subscribe({
-      next: () => {
-        this.toasterService.success('Cv deleted successfully');
-        this.backToCvsPage();
-      },
-      error: () => {
-        this.toasterService.error('An error occurred while deleting cv');
-        this.backToCvsPage();
-      },
-    });
+    this.cvService.deleteCv$(this.personne?.id ?? -1);
   }
   personne?: Personne;
 }

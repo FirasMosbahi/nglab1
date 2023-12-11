@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ROUTES } from '../router';
 import { AuthService } from '../services/auth.service';
 
@@ -7,18 +7,11 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent {
   constructor(private readonly authService: AuthService) {}
   logout() {
     this.authService.logout();
   }
+  id$ = this.authService.authData;
   routes = ROUTES;
-  userId : string | null = null;
-  ngOnInit() {
-    console.log('hello')
-    this.authService.authData.subscribe((value) => {
-      console.log('value', value);
-        this.userId = value
-    });
-  }
 }

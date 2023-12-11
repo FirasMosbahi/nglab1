@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Personne } from '../model/personne';
-import { CvService } from '../../services/cv.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Personne } from '../../model/personne';
 import { EmbaucheService } from '../../services/embauche.service';
-import { personnesMock } from '../../services/personne.mock';
 import { ToastrService } from 'ngx-toastr';
 import { AgeEnum } from '../enums/age';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
+import { CvService } from '../../services/cv.service';
 
 @Component({
   selector: 'app-cv',
@@ -14,23 +14,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CvComponent implements OnInit {
   constructor(
-    private readonly cvService: CvService,
     private readonly embauchService: EmbaucheService,
     private readonly toasterService: ToastrService,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly cvService: CvService,
   ) {}
 
   cvs: Personne[] = this.activatedRoute.snapshot.data['personnes'];
   selectedCv?: Personne;
-  embauchedPersonnes: Personne[] = [];
   cvsFilter: AgeEnum = AgeEnum.JUNIOR;
   filteredCvs: Personne[] = this.cvs.filter(
     (cv) => (this.cvsFilter === AgeEnum.JUNIOR) !== cv.age >= 40,
   );
-
   selectPersonne(selectedPersonne: Personne) {
     this.selectedCv = selectedPersonne;
   }
+
+  embauched$ = new Observable<Personne[] | null>();
+  cvs$ = new Observable<Personne[]>();
 
   changeCvsFilter(filter: AgeEnum) {
     this.cvsFilter = filter;
@@ -49,14 +50,17 @@ export class CvComponent implements OnInit {
     //     );
     //   },
     // });
-    this.embauchService.embauchedCv$.subscribe({
-      next: (personne) => {
+    this.embauched$ = this.embauchService.embauchedCv$.pipe(
+      tap((personne) => {
         this.toasterService.success('personne embauched successfully');
-        this.embauchedPersonnes.push(personne);
-      },
-      error: (err) => {
+      }),
+      catchError((err) => {
         this.toasterService.error(err);
-      },
-    });
+        return of(null);
+      }),
+    );
+    this.cvs$ = this.cvService.personnes$;
   }
+
+  protected readonly Personne = Personne;
 }

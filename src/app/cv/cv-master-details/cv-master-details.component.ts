@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { CvService } from '../../services/cv.service';
-import { Personne } from '../model/personne';
+import { Personne } from '../../model/personne';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ export class CvMasterDetailsComponent {
   cvs: Personne[] = this.activatedRoute.snapshot.data['personnes'];
 
   constructor(
-    private readonly cvService: CvService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
   ) {}

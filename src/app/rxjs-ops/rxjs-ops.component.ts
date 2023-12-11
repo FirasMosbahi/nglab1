@@ -26,9 +26,7 @@ export class RxjsOpsComponent {
   }
 
   constructor() {
-    this.mergedValue$ = merge(this.subjectOne$, this.subjectTwo$).pipe(
-      map((value) => value),
-    );
+    this.mergedValue$ = merge(this.subjectOne$, this.subjectTwo$);
 
     this.scanValue$ = this.mergedValue$.pipe(
       scan((acc, value) => {

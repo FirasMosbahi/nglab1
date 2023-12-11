@@ -10,6 +10,9 @@ import { ProductsComponent } from './porducts/products.component';
 import { cvDetailsResolver } from './resolvers/cv-details.resolver';
 import { cvResolver } from './resolvers/cv.resolver';
 import { CvMasterDetailsComponent } from './cv/cv-master-details/cv-master-details.component';
+import { AddCvComponent } from './cv/add-cv/add-cv.component';
+import { loginGuard } from './guards/login.guard';
+import { logoutGuard } from './guards/logout.guard';
 
 export const APP_ROUTES: Routes = [
   { path: 'cv', component: CvComponent, resolve: { personnes: cvResolver } },
@@ -21,10 +24,15 @@ export const APP_ROUTES: Routes = [
     resolve: { personne: cvDetailsResolver },
   },
   { path: 'authentification-form', component: AuthentificationFormComponent },
-  { path: 'login', component: AuthentificationFormComponent },
+  {
+    path: 'login',
+    component: AuthentificationFormComponent,
+    canActivate: [logoutGuard],
+  },
   { path: '', component: HomeComponent },
   { path: 'rxjs-ops', component: RxjsOpsComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'add-cv', component: AddCvComponent },
   {
     path: 'list',
     component: CvMasterDetailsComponent,
@@ -50,4 +58,5 @@ export const ROUTES = {
   rxjsOps: 'rxjs-ops',
   products: 'products',
   list: 'list',
+  addCv: 'add-cv',
 };

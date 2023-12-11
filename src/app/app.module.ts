@@ -28,6 +28,7 @@ import { AutocompleteSearchComponent } from './cv/autocomplete-search/autocomple
 import { RxjsOpsComponent } from './rxjs-ops/rxjs-ops.component';
 import { ProductsComponent } from './porducts/products.component';
 import { CvMasterDetailsComponent } from './cv/cv-master-details/cv-master-details.component';
+import { AddCvComponent } from './cv/add-cv/add-cv.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CvMasterDetailsComponent } from './cv/cv-master-details/cv-master-detai
     RxjsOpsComponent,
     ProductsComponent,
     CvMasterDetailsComponent,
+    AddCvComponent,
   ],
   imports: [
     HttpClientModule,

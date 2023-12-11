@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   debounceTime,
@@ -6,7 +6,7 @@ import {
   Observable,
   switchMap,
 } from 'rxjs';
-import { Personne } from '../model/personne';
+import { Personne } from '../../model/personne';
 import { CvService } from '../../services/cv.service';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../router';
@@ -16,7 +16,7 @@ import { ROUTES } from '../../router';
   templateUrl: './autocomplete-search.component.html',
   styleUrls: ['./autocomplete-search.component.css'],
 })
-export class AutocompleteSearchComponent {
+export class AutocompleteSearchComponent implements OnInit {
   constructor(
     private readonly cvService: CvService,
     private readonly router: Router,

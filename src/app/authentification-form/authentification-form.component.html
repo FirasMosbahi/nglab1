@@ -1,5 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="authForm">
-  <select id="errorSelect" class="block w-full mt-1 p-2 border rounded" >
+  <select id="errorSelect" class="block w-full mt-1 p-2 border rounded" *ngIf="formErrors$| async as formErrors " >
     <option *ngFor="let errorMessage of formErrors" [value]="errorMessage">
       {{ errorMessage }}
     </option>

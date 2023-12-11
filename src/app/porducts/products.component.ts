@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, concatMap, Observable, scan } from 'rxjs';
+import { BehaviorSubject, concatMap, Observable, scan, takeWhile } from 'rxjs';
 import { ProductService } from '../services/product.service';
 import { Product } from './product';
 
@@ -14,14 +14,9 @@ export class ProductsComponent {
   numberElements$ = new BehaviorSubject<number>(0);
   products$ = this.numberElements$.pipe(
     concatMap((skip) => this.productService.getProducts(12, skip)),
-    scan((previous, res) => {
-      return [...previous, ...res];
-    }),
+    takeWhile((products) => products.length == 12),
+    scan((previous, res) => [...previous, ...res]),
   );
-
-  loading = true;
-
-  ngOnInit() {}
 
   loadMore() {
     const nextPage = this.numberElements$.value + 12;

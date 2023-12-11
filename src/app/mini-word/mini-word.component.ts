@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {fonts} from "./fonts";
+import { fonts } from './fonts';
 
 class Style {
   color: string;
@@ -12,9 +12,9 @@ class Style {
   }
   getStyle() {
     return {
-      'color': this.color,
+      color: this.color,
       'font-size': `${this.fontSize}px`,
-      'font-family': this.fontFamily
+      'font-family': this.fontFamily,
     };
   }
 }
@@ -22,15 +22,12 @@ class Style {
 @Component({
   selector: 'app-mini-word',
   templateUrl: './mini-word.component.html',
-  styleUrls: ['./mini-word.component.css']
+  styleUrls: ['./mini-word.component.css'],
 })
 export class MiniWordComponent {
-  style : Style = new Style();
+  style: Style = new Style();
 
-  onClick = () => {
-    console.log(JSON.stringify(this.style));
-  }
-
+  onClick = () => {};
 
   protected readonly JSON = JSON;
   protected readonly fonts = fonts;
