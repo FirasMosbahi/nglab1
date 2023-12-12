@@ -7,13 +7,12 @@ import {
   Observable,
   of,
   Subject,
+  tap,
 } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { personnesMock } from './personne.mock';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CvService {
   private readonly API_URL = 'https://apilb.tridevs.net/api/personnes/';
   personnes: Personne[] = [];
@@ -55,11 +54,19 @@ export class CvService {
     }
   }
   addPersonne(personne: Personne) {
-    personne.id = this.personnes.length + 1;
-    // this.personnes.push(personne);
-    console.log('personne', personne);
-    this.personnes.push(personne);
-    this.personnes$.next(this.personnes);
+    return this.httpClient.post<Personne>(
+      `https://apilb.tridevs.net/api/personnes?access_token=${localStorage.getItem(
+        'id',
+      )}`,
+      {
+        name: personne.name,
+        firstname: personne.firstname,
+        cin: personne.cin,
+        job: personne.job,
+        path: personne.path,
+        age: personne.age,
+      },
+    );
   }
   deletePersonne(item: Personne) {
     this.personnes = this.personnes.filter((personne) => personne !== item);

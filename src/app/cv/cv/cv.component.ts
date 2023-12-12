@@ -17,7 +17,6 @@ export class CvComponent implements OnInit {
     private readonly embauchService: EmbaucheService,
     private readonly toasterService: ToastrService,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly cvService: CvService,
   ) {}
 
   cvs: Personne[] = this.activatedRoute.snapshot.data['personnes'];
@@ -31,7 +30,6 @@ export class CvComponent implements OnInit {
   }
 
   embauched$ = new Observable<Personne[] | null>();
-  cvs$ = new Observable<Personne[]>();
 
   changeCvsFilter(filter: AgeEnum) {
     this.cvsFilter = filter;
@@ -59,7 +57,6 @@ export class CvComponent implements OnInit {
         return of(null);
       }),
     );
-    this.cvs$ = this.cvService.personnes$;
   }
 
   protected readonly Personne = Personne;

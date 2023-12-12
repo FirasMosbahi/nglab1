@@ -29,6 +29,9 @@ import { RxjsOpsComponent } from './rxjs-ops/rxjs-ops.component';
 import { ProductsComponent } from './porducts/products.component';
 import { CvMasterDetailsComponent } from './cv/cv-master-details/cv-master-details.component';
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
+import { CvModule } from './cv/cv.module';
+import { LoginModule } from './authentification-form/login.module';
+import { CustomPreloadingStrategy } from './services/custom-preload-strategy.service';
 
 @NgModule({
   declarations: [
@@ -36,24 +39,10 @@ import { AddCvComponent } from './cv/add-cv/add-cv.component';
     MiniWordComponent,
     ColorsInputComponent,
     ColoredInputDirective,
-    PersonListElementComponent,
-    DefaultImagePipe,
-    PersonListComponent,
-    CvDetailsComponent,
-    CvComponent,
-    CvEmbauchComponent,
-    SkillsPipe,
-    PersonDetailsComponent,
     HomeComponent,
     NavbarComponent,
-    AuthentificationFormComponent,
-    CvCardFrontComponent,
-    CvCardBackComponent,
-    AutocompleteSearchComponent,
     RxjsOpsComponent,
     ProductsComponent,
-    CvMasterDetailsComponent,
-    AddCvComponent,
   ],
   imports: [
     HttpClientModule,
@@ -62,7 +51,9 @@ import { AddCvComponent } from './cv/add-cv/add-cv.component';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    RouterModule.forRoot(APP_ROUTES),
+    RouterModule.forRoot(APP_ROUTES, {
+      preloadingStrategy: CustomPreloadingStrategy,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

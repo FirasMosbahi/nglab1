@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Personne } from '../model/personne';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EmbaucheService {
   constructor() {}
 

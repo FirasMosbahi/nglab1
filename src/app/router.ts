@@ -13,26 +13,40 @@ import { CvMasterDetailsComponent } from './cv/cv-master-details/cv-master-detai
 import { AddCvComponent } from './cv/add-cv/add-cv.component';
 import { loginGuard } from './guards/login.guard';
 import { logoutGuard } from './guards/logout.guard';
+import { exitAddCvGuard } from './guards/exit-add-cv.guard';
 
 export const APP_ROUTES: Routes = [
-  { path: 'cv', component: CvComponent, resolve: { personnes: cvResolver } },
   { path: 'colors-input', component: ColorsInputComponent },
   { path: 'mini-word', component: MiniWordComponent },
-  {
-    path: 'cv-details/:id',
-    component: PersonDetailsComponent,
-    resolve: { personne: cvDetailsResolver },
-  },
-  { path: 'authentification-form', component: AuthentificationFormComponent },
+
   {
     path: 'login',
-    component: AuthentificationFormComponent,
+    loadChildren: () =>
+      import('./authentification-form/login.module').then((m) => m.LoginModule),
     canActivate: [logoutGuard],
   },
   { path: '', component: HomeComponent },
   { path: 'rxjs-ops', component: RxjsOpsComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'add-cv', component: AddCvComponent },
+  {
+    path: 'cv',
+    component: CvComponent,
+    resolve: { personnes: cvResolver },
+    data: { preload: true },
+  },
+  {
+    path: 'cv-details/:id',
+    component: PersonDetailsComponent,
+    resolve: { personne: cvDetailsResolver },
+    data: { preload: true },
+  },
+  {
+    path: 'add-cv',
+    component: AddCvComponent,
+    canDeactivate: [exitAddCvGuard],
+    canActivate: [loginGuard],
+    data: { preload: true },
+  },
   {
     path: 'list',
     component: CvMasterDetailsComponent,
@@ -44,6 +58,7 @@ export const APP_ROUTES: Routes = [
         resolve: { personne: cvDetailsResolver },
       },
     ],
+    data: { preload: true },
   },
 ];
 

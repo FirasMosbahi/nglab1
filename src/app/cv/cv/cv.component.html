@@ -1,6 +1,6 @@
 <div class="row gap-5 cv">
   <div class="col-md-3 col-sm-3">
-    <app-person-list [personnes]="(cvs$ | async)" (selectedPersonne)="selectPersonne($event)" (filterSelected)="changeCvsFilter($event)" />
+    <app-person-list [personnes]="cvs" (selectedPersonne)="selectPersonne($event)" (filterSelected)="changeCvsFilter($event)" />
   </div>
   <div class="col-md-6 col-sm-9" >
     <app-autocomplete-search />
